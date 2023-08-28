@@ -1,0 +1,4 @@
+.venv/
+.vscode/
+ner_resumes/
+__pycache__/
