@@ -1,4 +1,6 @@
 .venv/
 .vscode/
-ner_resumes/
+model_Kaggle/
+model_Docanno30/
 __pycache__/
+test.py
