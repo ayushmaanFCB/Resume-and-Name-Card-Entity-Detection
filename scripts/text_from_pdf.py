@@ -17,4 +17,4 @@ def extractFromPDF(filePath):
 
 def escape_ansi(line):
     ansi_escape = re.compile(r'(\x9B|\x1B\[)[0-?]*[ -\/]*[@-~]')
-    return ansi_escape.sub('', line).replace("\n", ".").replace("*", "").replace("\\", "")
+    return ansi_escape.sub('', line).replace("\n", ".").replace("*", "").replace("\\", "").replace(" ..", ". ").replace("..", ".")
