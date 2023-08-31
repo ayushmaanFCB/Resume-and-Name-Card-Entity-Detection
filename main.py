@@ -17,6 +17,10 @@ try:
 except Exception as e:
     print(e)
 
+with open("./assets/label_config.json", "r") as file:
+    datas = json.load(file)
+color_schemes = {}
+
 
 # TEXT EXTRACTION FROM RESUME AND ENTITY DETECTION
 
@@ -30,18 +34,25 @@ def resume_ner(filePath):
     doc = resume_nlp(text)
 
     # DISPLAYING ENTITIES USING DISPLACY
-    with open("./assets/label_config.json", "r") as file:
-        datas = json.load(file)
-    color_schemes = {}
     for data in datas:
         color_schemes.update({data['text']: data['backgroundColor']})
     output = displacy.render(doc, style="ent", page=True, options={
                              "colors": color_schemes})
 
-    html = "<h1 style='text-align:center'>Detected Entities</h1><div style='max-width:100%; overflow:auto'>" + \
-        output + "</div><hr>"
+    html = "<div style='text-align:justify'>" + \
+        output + "</div>"
 
-    return html
+    tokens = []
+    for ent in doc.ents:
+        tokens.append({ent.text: ent.label_})
+
+    details = {
+        "character_count": len(text),
+        "token_count": len(doc.ents),
+        "detected_tokens": tokens
+    }
+
+    return html, details
 
 
 # OUTPUT USING GRADIO (Python Web Framework)
@@ -50,12 +61,29 @@ with gradio.Blocks() as block:
         gradio.HTML(
             "<h1 style='text-align:center; font-size:40px'>Entity Recognition from Resume using Custom Trained Model</h1><hr>")
     with gradio.Row():
-        with gradio.Column():
+        with gradio.Column(scale=1):
             upload_button = gradio.UploadButton(
-                "Click to Upload a Resume File", file_count="single")
+                "Click to Upload a Resume File", file_count="single", size='lg')
+            gradio.ClearButton(upload_button)
+        with gradio.Column(scale=4):
+            # EXAMPLES
+            gradio.HighlightedText(value=[("Ayushmaan Das", "name"),
+                                          ("+91 8145328571", "phone"),
+                                          ("dasayush5maan@gmail.com", "email"),
+                                          ("Machine Learner", "role"),
+                                          ("Worked 2 years", "experience"),
+                                          ("Angular, Spring, Python", "skills"),
+                                          ("Recruit NXT", "companies"),
+                                          ("Bengali", "languages"),
+                                          ("Certified in Power BI", "acheivements"),
+                                          ("B. Tech CSE AI and ML", "education")], label="SAMPLE ENTITIES")
+
     with gradio.Row():
-        upload_button.upload(resume_ner, upload_button, gradio.HTML(
-        ), show_progress=True, scroll_to_output=True)
+        gradio.HTML(
+            "<br><hr style='text-align:center'><h1>Detected Entities will appear here: </h1>")
+    with gradio.Row():
+        upload_button.upload(resume_ner, upload_button, [gradio.HTML(label="DETECTED ENTITIES"
+                                                                     ), gradio.JSON(label="DETAILS")], show_progress=True, scroll_to_output=True)
 
 block.launch()
 

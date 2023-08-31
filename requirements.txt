@@ -1,0 +1,5 @@
+gradio
+spacy
+spacy-transformers
+docx2txt
+PyPDF2
