@@ -17,7 +17,7 @@ try:
 except Exception as e:
     print(e)
 
-with open("./assets/label_config.json", "r") as file:
+with open("./assets/jsons/label_config.json", "r") as file:
     datas = json.load(file)
 color_schemes = {}
 
@@ -84,8 +84,6 @@ with gradio.Blocks() as block:
     with gradio.Row():
         upload_button.upload(resume_ner, upload_button, [gradio.HTML(label="DETECTED ENTITIES"
                                                                      ), gradio.JSON(label="DETAILS")], show_progress=True, scroll_to_output=True)
-
-block.launch()
 
 
 # iface = gradio.Interface(

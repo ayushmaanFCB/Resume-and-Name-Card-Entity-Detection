@@ -1,3 +1,4 @@
+fastapi
 gradio
 spacy
 spacy-transformers
