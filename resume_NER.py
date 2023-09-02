@@ -17,7 +17,7 @@ try:
 except Exception as e:
     print(e)
 
-with open("./assets/jsons/label_config.json", "r") as file:
+with open("./static/jsons/label_config.json", "r") as file:
     datas = json.load(file)
 color_schemes = {}
 
