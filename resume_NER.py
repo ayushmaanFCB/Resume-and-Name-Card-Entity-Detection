@@ -21,8 +21,8 @@ with open("./static/jsons/label_config.json", "r") as file:
     datas = json.load(file)
 color_schemes = {}
 
-
 # TEXT EXTRACTION FROM RESUME AND ENTITY DETECTION
+
 
 def resume_ner(filePath):
     if filePath.name.endswith(".pdf"):

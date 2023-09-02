@@ -2,5 +2,6 @@
 .vscode/
 model_Kaggle/
 model_Docanno30/
+model_Namecard
 __pycache__/
 test.py
