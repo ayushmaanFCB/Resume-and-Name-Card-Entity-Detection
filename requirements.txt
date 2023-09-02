@@ -4,3 +4,7 @@ spacy
 spacy-transformers
 docx2txt
 PyPDF2
+opencv-python
+pytesseract
+numpy
+pandas
