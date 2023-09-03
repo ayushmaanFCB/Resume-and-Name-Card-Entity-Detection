@@ -4,6 +4,8 @@ import gradio
 import spacy
 from spacy import displacy
 import json
+import warnings
+warnings.filterwarnings('ignore')
 
 from scripts.text_from_pdf import extractFromPDF
 from scripts.text_from_docx import extractFromDOCX
@@ -13,7 +15,7 @@ from scripts.text_from_docx import extractFromDOCX
 
 try:
     resume_nlp = spacy.load("./model_Docanno30")
-    print("\nModel Loaded Successfully.......... \nLaunching Gradio App\n")
+    print("\nRESUME NER model loaded successfully.......... \Mounting Gradio App........\n")
 except Exception as e:
     print(e)
 
