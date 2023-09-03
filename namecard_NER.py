@@ -35,8 +35,7 @@ def cleanText(txt):
 
 def namecard_ner(filePath):
     # Load Image
-    image = cv2.imread(
-        'D:\\RecruitNXT - Internship (2023)\\Text Extraction Course\\data\\6.jpg')
+    image = cv2.imread(filePath.name)
 
     # Extract data using Pytesseract
     tessData = pytesseract.image_to_data(image)
