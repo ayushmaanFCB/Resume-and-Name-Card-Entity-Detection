@@ -6,7 +6,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 
 from resume_NER import block as resumeBlock
-from namecard_NER import iface as namecardBlock
+from namecard_NER import block as namecardBlock
   
 app = FastAPI()
 

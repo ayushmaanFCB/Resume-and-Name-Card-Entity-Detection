@@ -1,14 +1,13 @@
 # MODULES AND CUSTOM SCRIPTS
 
+from scripts.text_from_docx import extractFromDOCX
+from scripts.text_from_pdf import extractFromPDF
 import gradio
 import spacy
 from spacy import displacy
 import json
 import warnings
 warnings.filterwarnings('ignore')
-
-from scripts.text_from_pdf import extractFromPDF
-from scripts.text_from_docx import extractFromDOCX
 
 
 # LOADING THE CUSTOM TRAINED SPACY MODEL

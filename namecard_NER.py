@@ -102,8 +102,22 @@ def namecard_ner(filePath):
     return img_array
 
 
-gradio.Interface(
-    fn=namecard_ner,
-    inputs=gradio.File(label="Upload Business Card Picture"),
-    outputs=gradio.Image(label="Entities detected")
-).launch()
+with gradio.Blocks() as block:
+    with gradio.Row():
+        gradio.HTML(
+            "<h1 style='text-align:center; font-size:40px'>Detecting Entities from Business Cards using Custom Trained Model</h1><hr>")
+
+    with gradio.Row():
+        upload_button = gradio.UploadButton(
+            "Click to Upload a Resume File", file_count="single", size='lg')
+    gradio.ClearButton(upload_button)
+
+    with gradio.Row():
+        upload_button.upload(namecard_ner, upload_button, gradio.Image(
+        ), show_progress=True, scroll_to_output=True)
+
+# iface = gradio.Interface(
+#     fn=namecard_ner,
+#     inputs=gradio.File(label="Upload Business Card Picture"),
+#     outputs=gradio.Image(label="Entities detected")
+# )
