@@ -108,13 +108,30 @@ with gradio.Blocks() as block:
             "<h1 style='text-align:center; font-size:40px'>Detecting Entities from Business Cards using Custom Trained Model</h1><hr>")
 
     with gradio.Row():
-        with gradio.Column(scale=1):
+        with gradio.Column(scale=1, variant='panel'):
+            with gradio.Row():
+                gradio.HTML("""                    
+                    <div style='padding:20px'>
+                        <h1 style='font-size:30px'>Detectable entities:</h1>
+                        <ul style='font-size:20px'>
+                                <li>NAME</li>
+                                <li>EMAIL</li>
+                                <li>PHONE</li>                      
+                                <li>COMPANY / ORGANIZATION (ORG)</li>
+                                <li>URL / LINK (WEB)</li>
+                                <li>DESIGNATION (DES)</li>
+                        </ul>
+                        <br>
+                        <p style='font-size:20px'>Output will apear as bounding boxes within the image, the output image is downloadable.</p>
+                        <p style='font-size:20px'>Samples shave been depicted on the right.</p>
+                    </div>
+            
+                """)
             with gradio.Row():
                 upload_button = gradio.UploadButton(
                     "Click to Upload a Business Card Image", file_count="single", size='lg')
-                gradio.ClearButton(upload_button)
-            with gradio.Row():
-                gradio.HTML("<h2>")
+                gradio.ClearButton()
+
         with gradio.Column(scale=2):
             gradio.Gallery(["./static/images/namecard1.png",
                             "./static/images/namecard2.png", "./static/images/namecard3.png",
