@@ -99,6 +99,7 @@ def namecard_ner(filePath):
 
     img_array = cv2.imdecode(np.frombuffer(
         buffer, dtype=np.uint8), cv2.IMREAD_COLOR)
+
     return img_array
 
 
@@ -135,11 +136,15 @@ with gradio.Blocks() as block:
         with gradio.Column(scale=2):
             gradio.Gallery(["./static/images/namecard1.png",
                             "./static/images/namecard2.png", "./static/images/namecard3.png",
-                            "./static/images/namecard4.png", "./static/images/namecard5.png", "./static/images/namecard6.png"], columns=3, label="Sample Outputs")
+                            "./static/images/namecard4.png", "./static/images/namecard5.png", "./static/images/namecard6.png"], columns=3, label="Sample Outputs", preview=True)
 
     with gradio.Row():
-        upload_button.upload(namecard_ner, upload_button, gradio.Image(
-        ), show_progress=True, scroll_to_output=True)
+        gradio.HTML(
+            "<h1>Output Image with Bounding Boxes will appear here :</h1>")
+
+    with gradio.Row():
+        upload_button.upload(namecard_ner, upload_button,
+                             gradio.Image(container=True), show_progress=True, scroll_to_output=True)
 
 # iface = gradio.Interface(
 #     fn=namecard_ner,
