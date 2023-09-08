@@ -14,7 +14,7 @@ warnings.filterwarnings('ignore')
 
 try:
     resume_nlp = spacy.load("./model_Docanno30")
-    print("\nRESUME NER model loaded successfully.......... \Mounting Gradio App........\n")
+    print("\n \x1b[35mRESUME NER model loaded successfully..........\x1b[0m \n \x1b[36mMounting Gradio App........\n\x1b[0m")
 except Exception as e:
     print(e)
 

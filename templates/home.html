@@ -5,15 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <title>Document</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', path='/images/favicon.png') }}">
+    <title>Named Entity Recognizer</title>
 
     <style>
-        .block {
-            margin: 5rem;
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&family=Roboto:wght@500&display=swap');
+
+        * {
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        html {
+            background-image: url("{{ url_for('static', path='/images/background.jpg') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+
+        .block-1 {
+            margin: 3rem;
+        }
+
+        .block-2 {
+            margin: 7rem;
         }
 
         h1 {
             text-align: center;
+        }
+
+        #title {
+            font-size: 4rem;
+
         }
 
         .menu-image {
@@ -34,35 +57,58 @@
             transform: translate(-50%, -50%);
             -ms-transform: translate(-50%, -50%);
             text-align: center;
+
+
+        }
+
+        .card-image {
+            border-bottom-style: solid;
+            border-bottom-color: #1da1f2;
+            border-bottom-width: 0.3rem;
         }
 
 
         .card-image:hover .menu-image {
-            opacity: 0.3;
+            opacity: 0.25;
         }
 
         .card-image:hover .image-butt {
             opacity: 1;
+        }
+
+        .card {
+            border-style: solid;
+            border-color: #1da1f2;
+            border-width: 0.3rem;
+        }
+
+        .card-content {
+            background-color: #010c1e;
         }
     </style>
 
 </head>
 
 <body>
-    <div class="block">
-        <h1 class="title is-1">NAMED ENTITY RECOGNITION FROM DOCUMENTS</h1>
+    <div class="block-1">
+        <p style="text-align: center;"><img src="{{ url_for('static', path='/images/home-title.png') }}"></p>
     </div>
-    <div class="block">
+
+    <div class="block-2">
         <div class="columns">
             <div class="column">
                 <div class="card">
                     <div class="card-image">
                         <figure class="image is-16by9">
-                            <img src="{{ url_for('static', path='/images/home-resumeNER.png') }}"
-                                alt="Placeholder image" class="menu-image" style=":hover{transform: scale(1.5);}">
+                            <a href="/namecardNER" target="_blank">
+                                <img src="{{ url_for('static', path='/images/home-resumeNER.png') }}"
+                                    alt="Placeholder image" class="menu-image"
+                                    style=":hover{transform: scale(1.5);}"></a>
                         </figure>
                         <div class="image-butt">
-                            <a href="/resumeNER" target="_blank"><button class="button is-large is-primary">Go to NER
+                            <a href="/resumeNER" target="_blank"><button
+                                    style="color: #010c1e; font-weight: bolder; background-color: #1da1f2; border-radius: 5rem;"
+                                    class="button is-large is-primary">Go to NER
                                     from Resume
                                     Documents</button></a>
                         </div>
@@ -70,22 +116,37 @@
                     <div class="card-content">
                         <div class="media">
                             <div class="media-left">
-                                <figure class="image is-48x48">
-                                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                                <figure class="image is-96x96">
+                                    <img src="{{ url_for('static', path='/images/resume-home-icon.png') }}"
+                                        alt="Placeholder image">
                                 </figure>
                             </div>
                             <div class="media-content">
-                                <p class="title is-4">John Smith</p>
-                                <p class="subtitle is-6">@johnsmith</p>
+                                <p class="title is-3" style="color: #1da1f2;font-weight: bolder;">Recognizing Entities
+                                    from Resume Files</p>
+                                <div class="columns">
+                                    <div class="column">
+                                        <p style="color: #1da1f2;font-weight: bolder; font-size: 1.2rem;">&#x2022;
+                                            PyPDF2
+                                        </p>
+                                    </div>
+                                    <div class="column">
+                                        <p style="color: #1da1f2;font-weight: bolder; font-size: 1.2rem;">&#x2022;
+                                            Docx2txt
+                                        </p>
+                                    </div>
+                                    <div class="column">
+                                        <p style="color: #1da1f2;font-weight: bolder; font-size: 1.2rem;">&#x2022;
+                                            SpaCy
+                                        </p>
+                                    </div>
+                                    <div class="column">
+                                        <p style="color: #1da1f2;font-weight: bolder; font-size: 1.2rem;">&#x2022;
+                                            Gradio
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                            <a href="#">#css</a> <a href="#">#responsive</a>
-                            <br>
-                            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
                         </div>
                     </div>
                 </div>
@@ -94,11 +155,15 @@
                 <div class="card">
                     <div class="card-image">
                         <figure class="image is-16by9">
-                            <img src="{{ url_for('static', path='/images/home-namecardNER.png') }}"
-                                alt="Placeholder image" class="menu-image" style=":hover{transform: scale(1.5);}">
+                            <a href="/namecardNER" target="_blank">
+                                <img src="{{ url_for('static', path='/images/home-namecardNER.png') }}"
+                                    alt="Placeholder image" class="menu-image"
+                                    style=":hover{transform: scale(1.5);}"></a>
                         </figure>
                         <div class="image-butt">
-                            <a href="/namecardNER" target="_blank"><button class="button is-primary is-large">Go to NER
+                            <a href="/namecardNER" target="_blank"><button
+                                    style="color: #010c1e; font-weight: bolder; background-color: #1da1f2; border-radius: 5rem;"
+                                    class="button is-large is-primary">Go to NER
                                     from Name Cards
                                     or Business
                                     Cards</button></a>
@@ -107,22 +172,38 @@
                     <div class="card-content">
                         <div class="media">
                             <div class="media-left">
-                                <figure class="image is-48x48">
-                                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                                <figure class="image is-96x96">
+                                    <img src="{{ url_for('static', path='/images/resume-home-icon.png') }}"
+                                        alt="Placeholder image">
                                 </figure>
                             </div>
                             <div class="media-content">
-                                <p class="title is-4">John Smith</p>
-                                <p class="subtitle is-6">@johnsmith</p>
-                            </div>
-                        </div>
+                                <p class="title is-3" style="color: #1da1f2;font-weight: bolder;">Recognizing Entities
+                                    Business Cards</p>
+                                <div class="columns">
+                                    <div class="column">
+                                        <p style="color: #1da1f2;font-weight: bolder; font-size: 1.2rem;">&#x2022;
+                                            PyTesseract
+                                        </p>
+                                    </div>
+                                    <div class="column">
+                                        <p style="color: #1da1f2;font-weight: bolder; font-size: 1.2rem;">&#x2022;
+                                            Open CV
+                                        </p>
+                                    </div>
+                                    <div class="column">
+                                        <p style="color: #1da1f2;font-weight: bolder; font-size: 1.2rem;">&#x2022;
+                                            SpaCy
+                                        </p>
+                                    </div>
+                                    <div class="column">
+                                        <p style="color: #1da1f2;font-weight: bolder; font-size: 1.2rem;">&#x2022;
+                                            Gradio
+                                        </p>
+                                    </div>
+                                </div>
 
-                        <div class="content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                            <a href="#">#css</a> <a href="#">#responsive</a>
-                            <br>
-                            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                            </div>
                         </div>
                     </div>
                 </div>
