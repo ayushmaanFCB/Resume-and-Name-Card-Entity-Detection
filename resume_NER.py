@@ -2,6 +2,8 @@
 
 from scripts.text_from_docx import extractFromDOCX
 from scripts.text_from_pdf import extractFromPDF
+from scripts.structure_resume_data import structureData
+
 import gradio
 import spacy
 from spacy import displacy
@@ -13,7 +15,7 @@ warnings.filterwarnings('ignore')
 # LOADING THE CUSTOM TRAINED SPACY MODEL
 
 try:
-    resume_nlp = spacy.load("./model_Docanno30")
+    resume_nlp = spacy.load("./model_Docanno35_16ents")
     print("\n \x1b[35mRESUME NER model loaded successfully..........\x1b[0m \n \x1b[36mMounting Gradio App........\n\x1b[0m")
 except Exception as e:
     print(e)
@@ -50,8 +52,11 @@ def resume_ner(filePath):
     details = {
         "character_count": len(text),
         "token_count": len(doc.ents),
-        "detected_tokens": tokens
     }
+
+    structured_data = structureData(doc)
+
+    details.update({"Key Points": structured_data})
 
     return html, details
 
@@ -84,7 +89,7 @@ with gradio.Blocks() as block:
             "<br><hr style='text-align:center'><h1>Detected Entities will appear here: </h1>")
     with gradio.Row():
         upload_button.upload(resume_ner, upload_button, [gradio.HTML(label="DETECTED ENTITIES"
-                                                                     ), gradio.JSON(label="DETAILS")], show_progress=True, scroll_to_output=True)
+                                                                     ), gradio.JSON(label="DETECTED ENTITIES")], show_progress=True, scroll_to_output=True)
 
 
 # iface = gradio.Interface(

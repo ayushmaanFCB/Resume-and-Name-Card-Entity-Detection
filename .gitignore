@@ -3,5 +3,6 @@
 model_Kaggle/
 model_Docanno30/
 model_Namecard
+model_Docanno35_16ents/
 __pycache__/
 test.py
