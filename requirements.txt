@@ -1,5 +1,6 @@
 fastapi
 gradio
+pymongo
 spacy
 spacy-transformers
 docx2txt
