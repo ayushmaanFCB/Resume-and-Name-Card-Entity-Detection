@@ -4,6 +4,8 @@ from scripts.text_from_docx import extractFromDOCX
 from scripts.text_from_pdf import extractFromPDF
 from scripts.structure_resume_data import structureData
 
+from mongodb_connect import pushToDB
+
 import gradio
 import spacy
 from spacy import displacy
@@ -61,6 +63,10 @@ def resume_ner(filePath):
     return html, details
 
 
+def uploadData(post):
+    pushToDB(post)
+
+
 # OUTPUT USING GRADIO (Python Web Framework)
 with gradio.Blocks() as block:
     with gradio.Row():
@@ -88,9 +94,14 @@ with gradio.Blocks() as block:
         gradio.HTML(
             "<br><hr style='text-align:center'><h1>Detected Entities will appear here: </h1>")
     with gradio.Row():
-        upload_button.upload(resume_ner, upload_button, [gradio.HTML(label="DETECTED ENTITIES"
-                                                                     ), gradio.JSON(label="DETECTED ENTITIES")], show_progress=True, scroll_to_output=True)
+        output_html = gradio.HTML(label="DETECTED ENTITIES")
+        output_details = gradio.JSON(label="DETECTED ENTITIES")
+        upload_button.upload(resume_ner, upload_button, [
+                             output_html, output_details], show_progress=True, scroll_to_output=True)
 
+    with gradio.Row():
+        save_button = gradio.Button(value="Save to Cloud Database")
+        save_button.click(fn=uploadData, inputs=[])
 
 # iface = gradio.Interface(
 #     fn=resume_ner,
