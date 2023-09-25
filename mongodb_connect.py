@@ -6,6 +6,7 @@ try:
     cluster = MongoClient(uri)
     db = cluster["NER_from_Documents_Project"]
     collection = db["Resumes"]
+    print("\n \033[31mConnection to Database Successfull !!!\033[0m \n")
 except Exception as e:
     print("Failed to connect to Mongo DB Database : ", e)
 

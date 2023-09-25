@@ -4,13 +4,14 @@ from scripts.text_from_docx import extractFromDOCX
 from scripts.text_from_pdf import extractFromPDF
 from scripts.structure_resume_data import structureData
 
-from mongodb_connect import pushToDB
+import mongodb_connect
 
 import gradio
 import spacy
 from spacy import displacy
 import json
 import warnings
+import pprint
 warnings.filterwarnings('ignore')
 
 
@@ -64,7 +65,14 @@ def resume_ner(filePath):
 
 
 def uploadData(post):
-    pushToDB(post)
+    print(type({"AAa": "Aa"}))
+    print(type(post))
+    print(post)
+    try:
+        mongodb_connect.pushToDB(post)
+        pprint("\033[31mData pushed to database successfully : \033[0m", post)
+    except Exception as e:
+        print("Error pushing the Data :: ", e)
 
 
 # OUTPUT USING GRADIO (Python Web Framework)
@@ -101,7 +109,7 @@ with gradio.Blocks() as block:
 
     with gradio.Row():
         save_button = gradio.Button(value="Save to Cloud Database")
-        save_button.click(fn=uploadData, inputs=[])
+        save_button.click(fn=uploadData, inputs=[output_details])
 
 # iface = gradio.Interface(
 #     fn=resume_ner,
