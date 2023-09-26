@@ -4,14 +4,14 @@ from scripts.text_from_docx import extractFromDOCX
 from scripts.text_from_pdf import extractFromPDF
 from scripts.structure_resume_data import structureData
 
-import mongodb_connect
+from mongodb_connect import pushToDB
 
 import gradio
 import spacy
 from spacy import displacy
 import json
 import warnings
-import pprint
+from pprint import pprint
 warnings.filterwarnings('ignore')
 
 
@@ -19,7 +19,8 @@ warnings.filterwarnings('ignore')
 
 try:
     resume_nlp = spacy.load("./model_Docanno35_16ents")
-    print("\n \x1b[35mRESUME NER model loaded successfully..........\x1b[0m \n \x1b[36mMounting Gradio App........\n\x1b[0m")
+    print("\n\x1b[35mRESUME NER model loaded successfully..........\x1b[0m \n \x1b[36mMounting Gradio App........\n\x1b[0m")
+
 except Exception as e:
     print(e)
 
@@ -65,12 +66,12 @@ def resume_ner(filePath):
 
 
 def uploadData(post):
-    print(type({"AAa": "Aa"}))
-    print(type(post))
-    print(post)
     try:
-        mongodb_connect.pushToDB(post)
-        pprint("\033[31mData pushed to database successfully : \033[0m", post)
+        pushToDB(post)
+        print("\n\033[31mData pushed to database successfully : \033[0m\n")
+        pprint(post)
+    # except TypeError:
+    #     pprint("\033[31mData pushed to database successfully : \033[0m", post)
     except Exception as e:
         print("Error pushing the Data :: ", e)
 
