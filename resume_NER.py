@@ -31,7 +31,7 @@ color_schemes = {}
 
 # TEXT EXTRACTION FROM RESUME AND ENTITY DETECTION
 
-def resume_ner(filePath, save_button):
+def resume_ner(filePath):
     if filePath.name.endswith(".pdf"):
         text = extractFromPDF(filePath)
     if filePath.name.endswith(".docx"):
@@ -62,20 +62,22 @@ def resume_ner(filePath, save_button):
 
     details.update({"Key Points": structured_data})
 
-    save_button.interactive = True
-
     return html, details
 
 
 # PUSH TO DATABASE
 
 def uploadData(post):
-    try:
-        pushToDB(post)
-        print("\n\033[31mData pushed to database successfully : \033[0m\n")
-        pprint(post)
-    except Exception as e:
-        print("Error pushing the Data :: ", e)
+    if post != None:
+        try:
+            pushToDB(post)
+            print("\n\033[31mData pushed to database successfully : \033[0m\n")
+            pprint(post)
+            gradio.Info("Ecxcecxe")
+        except Exception as e:
+            print("Error pushing the Data :: ", e)
+    else:
+        raise gradio.Error("Upload a Resume First")
 
 
 # OUTPUT USING GRADIO (Python Web Framework)
@@ -88,7 +90,7 @@ with gradio.Blocks() as block:
             upload_button = gradio.UploadButton(
                 "Click to Upload a Resume File", file_count="single", size='lg')
             save_button = gradio.Button(
-                value="Save to Cloud Database", visible=True, interactive=False)
+                value="Save to Cloud Database", visible=True, interactive=True)
 
         with gradio.Column(scale=4):
             # EXAMPLES
@@ -111,6 +113,6 @@ with gradio.Blocks() as block:
             output_html = gradio.HTML(label="DETECTED ENTITIES")
         with gradio.Tab("JSON Output"):
             output_details = gradio.JSON(label="DETECTED ENTITIES")
-        upload_button.upload(resume_ner, [upload_button, save_button], [
+        upload_button.upload(resume_ner, inputs=upload_button, outputs=[
                              output_html, output_details], show_progress=True, scroll_to_output=True)
-        # save_button.click(fn=uploadData, inputs=[output_details])
+        save_button.click(fn=uploadData, inputs=[output_details])
