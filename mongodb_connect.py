@@ -1,4 +1,5 @@
 from pymongo.mongo_client import MongoClient
+import re
 
 uri = "mongodb+srv://ayushmaanFCB:ayonmongodb@cluster0.2uzsu2q.mongodb.net/?retryWrites=true&w=majority"
 
@@ -15,9 +16,13 @@ def pushToDB(post):
     collection.insert_one(post)
 
 
-def searchFromDB(keyword):
-    results = collection.find({"Key Points.expertise.skill": keyword})
-    x = []
-    for result in results:
-        x.append(result)
-    return x
+def searchFromDB(parameter, keyword):
+    if parameter in ["position", "experience", "company"]:
+        sub_cat = "work"
+    if parameter in ["skill"]:
+        sub_cat = "expertise"
+    if parameter in ["certification"]:
+        sub_cat = "achievements"
+    results = collection.find(
+        {"Key Points.{0}.{1}".format(sub_cat, parameter): re.compile(keyword, re.IGNORECASE)})
+    return results
