@@ -12,6 +12,8 @@ from spacy import displacy
 import json
 import warnings
 from pprint import pprint
+import tkinter as tk
+from tkinter import messagebox
 warnings.filterwarnings('ignore')
 
 
@@ -73,7 +75,6 @@ def uploadData(post):
             pushToDB(post)
             print("\n\033[31mData pushed to database successfully : \033[0m\n")
             pprint(post)
-            gradio.Info("Ecxcecxe")
         except Exception as e:
             print("Error pushing the Data :: ", e)
     else:

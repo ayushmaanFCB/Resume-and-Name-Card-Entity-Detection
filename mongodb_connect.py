@@ -13,3 +13,11 @@ except Exception as e:
 
 def pushToDB(post):
     collection.insert_one(post)
+
+
+def searchFromDB(keyword):
+    results = collection.find({"Key Points.expertise.skill": keyword})
+    x = []
+    for result in results:
+        x.append(result)
+    return x
