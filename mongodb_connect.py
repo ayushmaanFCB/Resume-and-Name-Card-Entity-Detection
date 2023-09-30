@@ -17,6 +17,9 @@ def pushToDB(post):
 
 
 def searchFromDB(parameter, keyword):
+    parameter = parameter.lower()
+    if parameter in ["name", "email", "phone"]:
+        sub_cat = "basics"
     if parameter in ["position", "experience", "company"]:
         sub_cat = "work"
     if parameter in ["skill"]:
@@ -25,4 +28,5 @@ def searchFromDB(parameter, keyword):
         sub_cat = "achievements"
     results = collection.find(
         {"Key Points.{0}.{1}".format(sub_cat, parameter): re.compile(keyword, re.IGNORECASE)})
+
     return results

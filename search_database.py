@@ -1,26 +1,25 @@
 import gradio
+import re
 from mongodb_connect import searchFromDB
 
 
 def search(parameter, keyword):
     results = searchFromDB(parameter, keyword)
-    output = """
-        <html>
-            <head></head>
-            <body>
-                <ul>
-    """
+    flag = False
+    output = """"""
     for result in results:
-        for skill in result['Key Points']['expertise']['skill']:
-            output = output + "<li>{0}</li>".format(skill)
-    output = output + "</ul></body></html>"
-
+        if result['Key Points']['basics']['name'] != None:
+            flag = True
+            
+    if flag == False:
+        output = """# Sorry, No such record exists in the database"""
     return output
 
 
-interface = gradio.Interface(
-    fn=search,
-    inputs=[gradio.Dropdown(choices=["position", "skill", "experience",
-                            "certification", "company"]), gradio.Textbox()],
-    outputs="text"
-)
+with gradio.Blocks() as block:
+    with gradio.Tab(label="SEARCH FOR UPLOADED RESUMES") as tab1:
+        parameter = gradio.Radio(choices=["NAME", "ID", "EMAIL", "PHONE"])
+        keyword = gradio.Text(label="Enter the value")
+        submit = gradio.Button(value="SEARCH")
+        submit.click(fn=search, inputs=[
+                     parameter, keyword], outputs=[gradio.Markdown()])
