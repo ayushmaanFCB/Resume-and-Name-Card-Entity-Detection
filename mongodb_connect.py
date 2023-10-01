@@ -18,7 +18,7 @@ def pushToDB(post):
 
 def searchFromDB(parameter, keyword):
     parameter = parameter.lower()
-    if parameter in ["name", "email", "phone"]:
+    if parameter in ["name", "email", "phone","location"]:
         sub_cat = "basics"
     if parameter in ["position", "experience", "company"]:
         sub_cat = "work"
