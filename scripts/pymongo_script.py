@@ -1,4 +1,5 @@
 from pymongo.mongo_client import MongoClient
+import re
 
 uri = "mongodb+srv://ayushmaanFCB:ayonmongodb@cluster0.2uzsu2q.mongodb.net/?retryWrites=true&w=majority"
 
@@ -9,8 +10,8 @@ collection = db["Resumes"]
 post1 = {"_id": 2, "name": "ABC"}
 post2 = {"_id": 3, "name": "CDE"}
 
-try:
-    doc_counts = collection.count_documents({"count":25})
-    print(doc_counts)
-except Exception as e:
-    print(e)
+results = collection.find(
+    {'Key Points.basics.location': re.compile('delhi', re.IGNORECASE)})
+
+for result in results:
+    print(result)
