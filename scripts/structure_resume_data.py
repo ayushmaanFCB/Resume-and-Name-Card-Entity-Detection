@@ -1,7 +1,7 @@
 def structureData(doc):
     basics = ["name", "email", "phone", "url", "location", "language"]
     academics = ["courses", "education"]
-    work = ["company", "position", "experience"]
+    work = ["company", "position", "experience", "role"]
     expertise = ["skill", "project"]
     achievement = ["certification", "award", "publication"]
     data = {
@@ -20,7 +20,8 @@ def structureData(doc):
         "work": {
             "company": [],
             "position": [],
-            "experience": []
+            "experience": [],
+            "role": []
         },
         "expertise": {
             "skill": [],

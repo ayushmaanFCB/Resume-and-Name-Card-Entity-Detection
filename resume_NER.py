@@ -20,7 +20,7 @@ warnings.filterwarnings('ignore')
 # LOADING THE CUSTOM TRAINED SPACY MODEL
 
 try:
-    resume_nlp = spacy.load("./model_Docanno35_16ents")
+    resume_nlp = spacy.load("./model_combined")
     print("\n\x1b[35mRESUME NER model loaded successfully..........\x1b[0m \n \x1b[36mMounting Gradio App........\n\x1b[0m")
 
 except Exception as e:
