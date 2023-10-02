@@ -29,9 +29,11 @@ except Exception as e:
 with open("./static/jsons/label_config.json", "r") as file:
     datas = json.load(file)
 color_schemes = {}
-
+for data in datas:
+    color_schemes.update({data['text']: data['backgroundColor']})
 
 # TEXT EXTRACTION FROM RESUME AND ENTITY DETECTION
+
 
 def resume_ner(filePath):
     if filePath.name.endswith(".pdf"):
@@ -43,8 +45,6 @@ def resume_ner(filePath):
     doc = resume_nlp(text)
 
     # DISPLAYING ENTITIES USING DISPLACY
-    for data in datas:
-        color_schemes.update({data['text']: data['backgroundColor']})
     output = displacy.render(doc, style="ent", page=True, options={
                              "colors": color_schemes})
 
@@ -72,11 +72,12 @@ def resume_ner(filePath):
 def uploadData(post):
     if post != None:
         try:
-            pushToDB(post)
+            result = pushToDB(post)
             print("\n\033[31mData pushed to database successfully : \033[0m\n")
-            pprint(post)
+            return "<h2 style='color:green'>DATA UPDATED SUCCESSFULLY !!!</h2> <h3 style='color:green'>ID : {0}</h3>".format(result.inserted_id)
         except Exception as e:
             print("Error pushing the Data :: ", e)
+            return None
     else:
         raise gradio.Error("Upload a Resume First")
 
@@ -92,19 +93,31 @@ with gradio.Blocks() as block:
                 "Click to Upload a Resume File", file_count="single", size='lg')
             save_button = gradio.Button(
                 value="Save to Cloud Database", visible=True, interactive=True)
+            id_area = gradio.HTML(
+                "<h2>Reference ID will be shown here on upload : </h2>", label="REFERENCE ID")
 
-        with gradio.Column(scale=4):
+        with gradio.Column(scale=2.5):
             # EXAMPLES
             gradio.HighlightedText(value=[("Ayushmaan Das", "name"),
                                           ("+91 8145328571", "phone"),
                                           ("dasayush5maan@gmail.com", "email"),
-                                          ("Machine Learner", "role"),
+                                          ("http://www.github.com/ayushmaanFCB", "url"),
+                                          ("Chennai, TN", "location"),
+                                          ("English", "language"),
+                                          ("B.Tech AI and ML", "course"),
+                                          ("B. Tech CSE AI and ML", "education"),
+                                          ("Recruit NXT", "company"),
+                                          ("Python Developer", "position"),
                                           ("Worked 2 years", "experience"),
-                                          ("Angular, Spring, Python", "skills"),
-                                          ("Recruit NXT", "companies"),
-                                          ("Bengali", "languages"),
-                                          ("Certified in Power BI", "acheivements"),
-                                          ("B. Tech CSE AI and ML", "education")], label="SAMPLE ENTITIES")
+                                          ("Developing ML Models", "role"),
+                                          ("Angular, Spring, Python", "skill"),
+                                          ("Resume Parsing and NER", "project"),
+                                          ("Certified in Power BI",
+                                           "certification"),
+                                          ("Beest intern award", "award"),
+                                          ("Published research paper on Twitter API",
+                                           "publication")
+                                          ], label="SAMPLE ENTITIES")
 
     with gradio.Row():
         gradio.HTML(
@@ -116,4 +129,5 @@ with gradio.Blocks() as block:
             output_details = gradio.JSON(label="DETECTED ENTITIES")
         upload_button.upload(resume_ner, inputs=upload_button, outputs=[
                              output_html, output_details], show_progress=True, scroll_to_output=True)
-        save_button.click(fn=uploadData, inputs=[output_details])
+        save_button.click(fn=uploadData, inputs=[
+                          output_details], outputs=[id_area])

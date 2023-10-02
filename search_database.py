@@ -44,7 +44,7 @@ def searchResumes(parameter, keyword):
                 output = output + "<h2>{0}</h2>".format(messages[i])
                 for info in data:
                     output = output + \
-                        "<span style='margin-right: 20px'>{0}</span>".format(
+                        "<span style='margin-right: 30px'>{0}</span>".format(
                             info)
 
         datas = [experiences, roles]
@@ -55,17 +55,17 @@ def searchResumes(parameter, keyword):
                 output = output + "<h2>{0}</h2><ul>".format(messages[i])
                 for info in data:
                     output = output + \
-                        "<ul>{0}</ul>".format(
+                        "<li>{0}</li>".format(
                             info)
                 output = output + "</ul>"
 
-        output = output + "<h2>Work Experiences and Expertises : </h2><ul>"
-        for experience in experiences:
-            output = output + "<li>{0}</li>".format(experience)
-        output = output + "</ul>"
-
     if flag == False:
-        output = """<h1 style='color:red'>Sorry, No such record exists in the database :(</h1>"""
+        output = """
+            <div style='text-align:center; margin: 0 auto;'>
+            <img style='margin: 0 auto;' width="96" height="96" src="https://img.icons8.com/color-glass/96/user-not-found.png" alt="user-not-found"/>
+            <h1 style='color:red'>Sorry, No match has been found. Check the details entered.</h1>
+            </div>
+        """
 
     output = output + "</div>"
     return output
@@ -99,7 +99,14 @@ def searchByParameters(parameter, keyword):
     output = output + "</table>"
 
     if flag == False:
-        output = """<h1 style='color:red'>Sorry, No match has been found :(</h1>"""
+        output = """
+        <p style='text-align:center'>
+        <img width="96" height="96" src="https://img.icons8.com/color-glass/96/user-not-found.png" alt="user-not-found"/>
+        <h1 style='color:red'>Sorry, No match has been found. Check the details entered.</h1>
+        </p>
+        """
+    else:
+        output = "<h1 style='text-align:center'>RECORDS FETCHED</h1>" + output
     return output
 
 

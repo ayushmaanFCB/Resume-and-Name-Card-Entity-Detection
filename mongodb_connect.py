@@ -13,7 +13,8 @@ except Exception as e:
 
 
 def pushToDB(post):
-    collection.insert_one(post)
+    result = collection.insert_one(post) 
+    return result
 
 
 def searchFromDB(parameter, keyword):

@@ -4,7 +4,7 @@
     "text": "name",
     "prefixKey": null,
     "suffixKey": null,
-    "backgroundColor": "#73D8FF",
+    "backgroundColor": "#342d53",
     "textColor": "#ffffff"
   },
   {
@@ -12,7 +12,7 @@
     "text": "phone",
     "prefixKey": null,
     "suffixKey": null,
-    "backgroundColor": "#0062B1",
+    "backgroundColor": "#00214d",
     "textColor": "#ffffff"
   },
   {
@@ -20,63 +20,119 @@
     "text": "email",
     "prefixKey": null,
     "suffixKey": null,
+    "backgroundColor": "#004eb3",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 4,
+    "text": "url",
+    "prefixKey": null,
+    "suffixKey": null,
+    "backgroundColor": "#260080",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 4,
+    "text": "location",
+    "prefixKey": null,
+    "suffixKey": null,
+    "backgroundColor": "#4500e6",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 4,
+    "text": "language",
+    "prefixKey": null,
+    "suffixKey": null,
     "backgroundColor": "#194D33",
-    "textColor": "#ffffff"
+    "textColor": "#17004d"
   },
   {
-    "id": 5,
-    "text": "role",
+    "id": 4,
+    "text": "course",
     "prefixKey": null,
     "suffixKey": null,
-    "backgroundColor": "#9F0500",
+    "backgroundColor": "#004d47",
     "textColor": "#ffffff"
   },
   {
-    "id": 6,
-    "text": "experience",
-    "prefixKey": null,
-    "suffixKey": null,
-    "backgroundColor": "#FDA1FF",
-    "textColor": "#ffffff"
-  },
-  {
-    "id": 7,
-    "text": "skills",
-    "prefixKey": null,
-    "suffixKey": null,
-    "backgroundColor": "#c4deb8",
-    "textColor": "#ffffff"
-  },
-  {
-    "id": 8,
-    "text": "companies",
-    "prefixKey": null,
-    "suffixKey": null,
-    "backgroundColor": "#F44E3B",
-    "textColor": "#ffffff"
-  },
-  {
-    "id": 9,
-    "text": "languages",
-    "prefixKey": null,
-    "suffixKey": null,
-    "backgroundColor": "#0C797D",
-    "textColor": "#ffffff"
-  },
-  {
-    "id": 10,
-    "text": "acheivements",
-    "prefixKey": null,
-    "suffixKey": null,
-    "backgroundColor": "#59DF49",
-    "textColor": "#ffffff"
-  },
-  {
-    "id": 11,
+    "id": 4,
     "text": "education",
     "prefixKey": null,
     "suffixKey": null,
-    "backgroundColor": "#FCDC00",
+    "backgroundColor": "#001a18",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 4,
+    "text": "company",
+    "prefixKey": null,
+    "suffixKey": null,
+    "backgroundColor": "#200000",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 4,
+    "text": "position",
+    "prefixKey": null,
+    "suffixKey": null,
+    "backgroundColor": "#600000",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 4,
+    "text": "experience",
+    "prefixKey": null,
+    "suffixKey": null,
+    "backgroundColor": "#dc036c",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 4,
+    "text": "role",
+    "prefixKey": null,
+    "suffixKey": null,
+    "backgroundColor": "#5e012e",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 4,
+    "text": "skill",
+    "prefixKey": null,
+    "suffixKey": null,
+    "backgroundColor": "#029d0c",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 4,
+    "text": "project",
+    "prefixKey": null,
+    "suffixKey": null,
+    "backgroundColor": "#305e01",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 4,
+    "text": "certification",
+    "prefixKey": null,
+    "suffixKey": null,
+    "backgroundColor": "#5e2b01",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 4,
+    "text": "award",
+    "prefixKey": null,
+    "suffixKey": null,
+    "backgroundColor": "#5e2b01",
+    "textColor": "#ffffff"
+  },
+  {
+    "id": 4,
+    "text": "publicaton",
+    "prefixKey": null,
+    "suffixKey": null,
+    "backgroundColor": "#1f0e00",
     "textColor": "#ffffff"
   }
 ]
