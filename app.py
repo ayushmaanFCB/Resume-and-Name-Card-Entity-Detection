@@ -1,4 +1,5 @@
 import gradio
+# from test import block_test
 
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
@@ -23,6 +24,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 app = gradio.mount_gradio_app(app, resumeBlock, path="/resumeNER")
 app = gradio.mount_gradio_app(app, namecardBlock, path="/namecardNER")
 app = gradio.mount_gradio_app(app, search_block, path="/search")
+# app = gradio.mount_gradio_app(app, block_test, path="/test")
 
 
 # @app.get("/saveResume", response_class=HTMLResponse)

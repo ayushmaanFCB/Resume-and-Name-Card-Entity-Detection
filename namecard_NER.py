@@ -103,7 +103,7 @@ def namecard_ner(filePath):
     return img_array
 
 
-with gradio.Blocks() as block:
+with gradio.Blocks(theme=gradio.themes.Monochrome()) as block:
     with gradio.Row():
         gradio.HTML(
             "<h1 style='text-align:center; font-size:40px'>Detecting Entities from Business Cards using Custom Trained Model</h1><hr>")
