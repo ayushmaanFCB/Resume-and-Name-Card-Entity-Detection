@@ -1,5 +1,6 @@
 from pymongo.mongo_client import MongoClient
 import re
+from bson import ObjectId
 
 uri = "mongodb+srv://ayushmaanFCB:ayonmongodb@cluster0.2uzsu2q.mongodb.net/?retryWrites=true&w=majority"
 
@@ -13,7 +14,7 @@ except Exception as e:
 
 
 def pushToDB(post):
-    result = collection.insert_one(post) 
+    result = collection.insert_one(post)
     return result
 
 
@@ -32,5 +33,9 @@ def searchFromDB(parameter, keyword):
             {"Key Points.{0}.{1}".format(sub_cat, parameter): re.compile(keyword, re.IGNORECASE)})
     if parameter == "id":
         results = collection.find(
-            {"_id": keyword})
+            {"_id": ObjectId(keyword)})
     return results
+
+
+def allRecords():
+    return collection.find()

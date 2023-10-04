@@ -32,7 +32,7 @@ def searchResumes(parameter, keyword):
             output = output + \
                 """<h1 style='text-align:center'>{0}</h1> <table style='margin-right:auto; margin-left:auto'><tr><th>ID</th><th>CONTACT NUMBER</th><th>EMAIL IDs</th><th>LOCATIONS</th><th>LANGUAGES</th></tr>""".format(
                     name.upper())
-            output = output + """<tr><tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td></tr>""".format(
+            output = output + """<tr><tr><td><a href='/applicant/{0}' style='color:yellow'>{0}</a></td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td></tr>""".format(
                 id, ", ".join(map(str, phone)), ", ".join(map(str, email)), ", ".join(
                     map(str, locations)), ", ".join(map(str, languages))
             )
@@ -94,7 +94,7 @@ def searchByParameters(parameter, keyword):
         positions = result['Key Points']['work']['position']
         phone, email, languages, locations, companies, positions, locations, languages = [
             "-" if not data else data for data in (phone, email, languages, locations, companies, positions, locations, languages)]
-        output = output + """<tr><tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td></tr>""".format(
+        output = output + """<tr><tr><td><a href='/applicant/{0}' style='color:yellow'>{0}</a></td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td></tr>""".format(
             id, name, ", ".join(map(str, phone)), ", ".join(map(str, email)), ", ".join(map(str, companies)), ", ".join(
                 map(str, positions)), ", ".join(map(str, locations)), ", ".join(map(str, languages))
         )

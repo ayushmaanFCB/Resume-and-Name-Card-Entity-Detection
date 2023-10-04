@@ -15,10 +15,30 @@
             font-family: 'Quicksand', sans-serif;
         }
 
+        @media (max-width: 768px) {
+            html {
+                background: none;
+            }
+
+            #main-home {
+                display: none;
+            }
+
+            .menu {
+                text-align: center;
+            }
+
+            #svgs {
+                margin-top: 1rem;
+                display: flex;
+            }
+        }
+
+
         html {
             background-image: url("{{ url_for('static', path='/images/background.jpg') }}");
-            background-size: cover;
-            background-repeat: no-repeat;
+            /* background-size: cover; */
+            /* background-repeat: no-repeat; */
             /* overflow: hidden; */
         }
 
@@ -135,11 +155,13 @@
                     <ul class="menu-list">
                         <li><a href="/search">Retrive a Record</a></li>
                         <li><a href="/search">Filtered Search</a></li>
-                        <li><a>Show all records</a></li>
                     </ul>
                     <p class="menu-label">
                         Administration
                     </p>
+                    <ul class="menu-list">
+                        <li><a>Fetch all records</a></li>
+                    </ul>
                     <p class="menu-label">
                         Source Code
                     </p>
@@ -151,7 +173,7 @@
                     </ul>
 
                 </aside>
-                <div class="columns" style="text-align: center;">
+                <div class="columns" style="text-align: center;" id="svgs">
                     <div class="column">
                         <a href="https://github.com/ayushmaanFCB" target="_blank">
                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40"
@@ -207,7 +229,7 @@
         </div>
 
 
-        <div class="column">
+        <div class="column" id="main-home">
             <div class="block-1">
                 <p style="text-align: center;"><img src="{{ url_for('static', path='/images/home-title.png') }}"></p>
             </div>
