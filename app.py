@@ -9,7 +9,7 @@ from fastapi.staticfiles import StaticFiles
 from resume_NER import block as resumeBlock
 from namecard_NER import block as namecardBlock
 from search_database import block as search_block
-from fetch_records import block as recordsBlock
+from applicant_info import block as recordsBlock
 
 app = FastAPI()
 
