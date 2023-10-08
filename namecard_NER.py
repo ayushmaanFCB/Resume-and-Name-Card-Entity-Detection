@@ -103,7 +103,7 @@ def namecard_ner(filePath):
     return img_array
 
 
-with gradio.Blocks(theme=gradio.themes.Monochrome()) as block:
+with gradio.Blocks(theme=gradio.themes.Monochrome(), title="NER from Namecards") as block:
     with gradio.Row():
         gradio.HTML(
             "<h1 style='text-align:center; font-size:40px'>Detecting Entities from Business Cards using Custom Trained Model</h1><hr>")
@@ -145,9 +145,3 @@ with gradio.Blocks(theme=gradio.themes.Monochrome()) as block:
     with gradio.Row():
         upload_button.upload(namecard_ner, upload_button,
                              gradio.Image(container=True), show_progress=True, scroll_to_output=True)
-
-# iface = gradio.Interface(
-#     fn=namecard_ner,
-#     inputs=gradio.File(label="Upload Business Card Picture"),
-#     outputs=gradio.Image(label="Entities detected")
-# )

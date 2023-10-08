@@ -81,7 +81,7 @@ def uploadData(post):
 
 
 # OUTPUT USING GRADIO (Python Web Framework)
-with gradio.Blocks(theme=gradio.themes.Monochrome()) as block:
+with gradio.Blocks(theme=gradio.themes.Monochrome(), title="NER from Resume") as block:
     with gradio.Row():
         gradio.HTML(
             "<h1 style='text-align:center; font-size:40px'>Entity Recognition from Resume using Custom Trained Model</h1><hr>")

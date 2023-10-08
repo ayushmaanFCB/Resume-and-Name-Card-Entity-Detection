@@ -7,9 +7,39 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="icon" type="image/png" href="{{ url_for('static', path='/images/favicon.png') }}">
     <title>Records in Database</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .table {
+            background-color: #171717;
+            margin: auto;
+            color: white;
+        }
+
+        thead {
+            font-weight: bolder;
+            font-size: 1.1rem;
+        }
+
+        td:nth-child(5),
+        td:nth-child(6),
+        td:nth-child(9) {
+            max-width: 10rem;
+            /* Adjust the width according to your needs */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            /* Show ellipsis (...) for overflowed text */
+            white-space: nowrap;
+            /* Prevent the text from wrapping to the next line */
+        }
+    </style>
 </head>
 
 <body style="text-align: center;">
+    <h1 class="title is-1">DATABASE - APPLICANT RECORDS</h1>
+
     <table class="table">
         <thead>
             <tr>
@@ -24,3 +54,5 @@
                 <td>SKILLS</td>
             </tr>
         </thead>
+
+        <tbody>

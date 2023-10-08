@@ -37,5 +37,5 @@ def searchFromDB(parameter, keyword):
     return results
 
 
-def allRecords():
-    return collection.find()
+def fetchAllRecords():
+    return collection.find({})

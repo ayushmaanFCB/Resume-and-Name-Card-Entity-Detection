@@ -75,4 +75,4 @@ def searchResumes(request: gr.Request):
 
 
 block = gr.Interface(searchResumes, inputs=[], outputs=[
-                     gr.HTML()], live=True, theme=gr.themes.Monochrome(), title="APPLICANT DETAILS")
+                     gr.HTML()], live=True, theme=gr.themes.Monochrome(), title="Applicant Data")
