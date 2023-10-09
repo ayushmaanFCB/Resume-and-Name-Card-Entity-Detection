@@ -37,9 +37,6 @@
 
         html {
             background-image: url("{{ url_for('static', path='/images/background.jpg') }}");
-            /* background-size: cover; */
-            /* background-repeat: no-repeat; */
-            /* overflow: hidden; */
         }
 
         body {
@@ -126,7 +123,18 @@
         #modulesHomeCard li {
             margin-right: 3rem;
             color: #fef6aa;
-            /* font-size: 1.3rem; */
+        }
+
+        .floating-button {
+            position: fixed;
+            bottom: 2.5rem;
+            right: 2.5rem;
+            width: 5rem;
+            height: 5rem;
+            font-size: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
         }
     </style>
 
@@ -154,7 +162,7 @@
                     </p>
                     <ul class="menu-list">
                         <li><a href="/search">Retrive a Record</a></li>
-                        <li><a href="/search">Filtered Search</a></li>
+                        <li><a href="/chatbot">Chat and Search</a></li>
                     </ul>
                     <p class="menu-label">
                         Administration
@@ -323,14 +331,12 @@
         </div>
     </div>
 
-    </div>
-
-
-
-
+    <a href="/chatbot" target="_blank">
+        <figure class="floating-button">
+            <img src="{{ url_for('static', path='/images/chatbot-icon.png') }}" alt="Placeholder image">
+        </figure>
+    </a>
 
 </body>
-
-
 
 </html>

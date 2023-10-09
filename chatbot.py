@@ -56,5 +56,5 @@ def generatePrompt(message, history):
         return reply
 
 
-chat = gradio.ChatInterface(
-    fn=generatePrompt, title="Ask the Bot")
+chat = gradio.ChatInterface(theme=gradio.themes.Monochrome(),
+                            fn=generatePrompt, title="Ask the Bot", submit_btn="SEND", autofocus=True)
