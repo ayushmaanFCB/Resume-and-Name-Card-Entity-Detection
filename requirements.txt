@@ -7,6 +7,7 @@ spacy-transformers
 docx2txt
 PyPDF2
 opencv-python
+configparser
 pytesseract
 numpy
 pandas

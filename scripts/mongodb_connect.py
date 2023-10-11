@@ -1,8 +1,13 @@
 from pymongo.mongo_client import MongoClient
 import re
 from bson import ObjectId
+import configparser
 
-uri = "mongodb+srv://ayushmaanFCB:ayonmongodb@cluster0.2uzsu2q.mongodb.net/?retryWrites=true&w=majority"
+config = configparser.ConfigParser()
+config.read('../configs/config.ini')
+uri = config.get('MONGODB', 'key')
+
+print(f'API Key: {uri}')
 
 try:
     cluster = MongoClient(uri)
