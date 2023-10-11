@@ -1,5 +1,5 @@
 import gradio as gr
-from mongodb_connect import searchFromDB
+from scripts.mongodb_connect import searchFromDB
 
 
 def echo(request: gr.Request):
@@ -16,7 +16,9 @@ def searchResumes(request: gr.Request):
     id = ""
     if request:
         id = request.headers['referer'].split('/')[-2]
-    print(id)
+        print(f"\n\033[31mRequest sent for {id}\033[0m \n")
+    else:
+        print("\n\033[Failed to send request\033[0m \n")
     results = searchFromDB("id", id)
     output = """<div>"""
     for result in results:
@@ -35,6 +37,12 @@ def searchResumes(request: gr.Request):
         positions = result['Key Points']['work']['position']
         experiences = result['Key Points']['work']['experience']
         roles = result['Key Points']['work']['role']
+        education = result['Key Points']['academics']['education']
+        course = result['Key Points']['academics']['course']
+        project = result['Key Points']['expertise']['project']
+        certification = result['Key Points']['achievements']['certification']
+        award = result['Key Points']['achievements']['award']
+        publication = result['Key Points']['achievements']['publication']
 
         phone, email, languages, locations = [
             "-" if not data else data for data in (phone, email, languages, locations)]
@@ -58,9 +66,17 @@ def searchResumes(request: gr.Request):
                         "<span style='margin-right: 30px'>{0}</span>".format(
                             info)
 
-        datas = [experiences, roles]
+        datas = [experiences, roles, education, course,
+                 project, certification, award, publication]
         messages = ["<h2>Work Experiences and Expertise : </h2>",
-                    "<h2>Roles and Tasks performed : </h2>"]
+                    "<h2>Roles and Tasks performed : </h2>",
+                    "<h2>Educational History : </h2>",
+                    "<h2>Degrees and Courses undertaken : </h2>",
+                    "<h2>Projects and Assignments completed : </h2>",
+                    "<h2>Certifications : </h2>",
+                    "<h2>Awards and Accolades : </h2>",
+                    "<h2>Publications and Research Papers : </h2>"
+                    ]
         for i, data in enumerate(datas):
             if data != []:
                 output = output + "<h2>{0}</h2><ul>".format(messages[i])

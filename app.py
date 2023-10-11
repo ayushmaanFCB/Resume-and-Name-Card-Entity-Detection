@@ -1,5 +1,4 @@
 import gradio
-# from test import block_test
 
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
@@ -31,4 +30,3 @@ app = gradio.mount_gradio_app(
     app, applicant_info_block, path="/applicant/{id}")
 app = gradio.mount_gradio_app(app, all_records_block, path="/records")
 app = gradio.mount_gradio_app(app, chat, path="/chatbot")
-# app = gradio.mount_gradio_app(app, block_test, path="/test")

@@ -4,7 +4,7 @@ from scripts.text_from_docx import extractFromDOCX
 from scripts.text_from_pdf import extractFromPDF
 from scripts.structure_resume_data import structureData
 
-from mongodb_connect import pushToDB
+from scripts.mongodb_connect import pushToDB
 
 import gradio
 import spacy
@@ -19,7 +19,7 @@ warnings.filterwarnings('ignore')
 
 try:
     resume_nlp = spacy.load("./model_combined")
-    print("\n\x1b[35mRESUME NER model loaded successfully..........\x1b[0m \n \x1b[36mMounting Gradio App........\n\x1b[0m")
+    print("\n\x1b[35mRESUME NER model loaded successfully..........\x1b[0m \n>> \x1b[36mMounting Gradio App........\n\x1b[0m")
 
 except Exception as e:
     print(e)
@@ -71,8 +71,8 @@ def uploadData(post):
     if post != None:
         try:
             result = pushToDB(post)
-            print("\n\033[31mData pushed to database successfully : \033[0m\n")
-            return "<h2 style='color:green'>DATA UPDATED SUCCESSFULLY !!!</h2> <h3 style='color:green'>ID : {0}</h3>".format(result.inserted_id)
+            print("\n\033[31mData pushed to database successfully \033[0m\n")
+            return "<h2 style='color:#7ffe01'>DATA UPDATED SUCCESSFULLY !!!</h2> <h3 style='color:#7ffe01'>ID : {0}</h3>".format(result.inserted_id)
         except Exception as e:
             print("Error pushing the Data :: ", e)
             return None

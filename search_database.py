@@ -1,16 +1,18 @@
 import gradio
 import re
-from mongodb_connect import searchFromDB
+from scripts.mongodb_connect import searchFromDB
 
 
 def searchResumes(parameter, keyword):
     flag = False
+    counter = 0
 
     if len(keyword) > 3:
         results = searchFromDB(parameter, keyword)
         output = """<div>"""
         for result in results:
             flag = True
+            counter = counter + 1
             id = result["_id"]
             try:
                 name = result['Key Points']['basics']['name'][0]
@@ -49,17 +51,11 @@ def searchResumes(parameter, keyword):
                             "<span style='margin-right: 30px'>{0}</span>".format(
                                 info)
 
-            datas = [experiences, roles]
-            messages = ["<h2>Work Experiences and Expertise : </h2>",
-                        "<h2>Roles and Tasks performed : </h2>"]
-            for i, data in enumerate(datas):
-                if data != []:
-                    output = output + "<h2>{0}</h2><ul>".format(messages[i])
-                    for info in data:
-                        output = output + \
-                            "<li>{0}</li>".format(
-                                info)
-                    output = output + "</ul>"
+            output = output + \
+                f"<br><br><p style='text-align:center'><b><i>In order to fetch complete information, Click <a href='/applicant/{id}' style='color:yellow'>here</a></b></i></p>"
+
+            if counter > 1:
+                output = output + "<hr>"
 
     if flag == False:
         output = """
@@ -68,6 +64,8 @@ def searchResumes(parameter, keyword):
             <h1 style='color:red'>Sorry, No match has been found. Check the details entered.</h1>
             </div>
         """
+    else:
+        output = f"<h1 style='color:#7ffe01'>Matches Found : {counter}</h1>" + output
 
     output = output + "</div>"
     return output

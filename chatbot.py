@@ -5,7 +5,7 @@ import re
 from bson import ObjectId
 import gradio
 
-from mongodb_connect import fetchAllRecords
+from scripts.mongodb_connect import fetchAllRecords
 
 prompt = pipeline("table-question-answering",
                   model="google/tapas-base-finetuned-wtq")

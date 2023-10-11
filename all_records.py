@@ -1,5 +1,5 @@
 import gradio
-from mongodb_connect import fetchAllRecords
+from scripts.mongodb_connect import fetchAllRecords
 
 
 def generateTabularRecords(output):

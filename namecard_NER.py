@@ -15,7 +15,7 @@ warnings.filterwarnings('ignore')
 try:
     # Load NER model
     model_ner = spacy.load('./model_Namecard/model-best')
-    print("\n\x1b[35mNAMECARD NER model loaded successfully..........\x1b[0m \n \x1b[36mMounting Gradio App........\n\x1b[0m")
+    print("\n\x1b[35mNAMECARD NER model loaded successfully..........\x1b[0m \n>> \x1b[36mMounting Gradio App........\n\x1b[0m")
 except Exception as e:
     print(e)
 
