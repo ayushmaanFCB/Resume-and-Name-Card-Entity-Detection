@@ -4,8 +4,8 @@ from bson import ObjectId
 import configparser
 
 config = configparser.ConfigParser()
-config.read('../configs/config.ini')
-uri = config.get('MONGODB', 'key')
+config.read('./configs/config.ini')
+uri = config.get('MONGODB_ATLAS', 'key')
 
 print(f'API Key: {uri}')
 
