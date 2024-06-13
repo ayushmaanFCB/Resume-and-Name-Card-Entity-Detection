@@ -5,5 +5,6 @@ model_Docanno30/
 model_Namecard
 model_Docanno35_16ents/
 model_combined/
-__pycache__/
+__pycache__
 test.py
+configs/

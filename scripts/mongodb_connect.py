@@ -7,7 +7,7 @@ config = configparser.ConfigParser()
 config.read('./configs/config.ini')
 uri = config.get('MONGODB_ATLAS', 'key')
 
-print(f'API Key: {uri}')
+# print(f'API Key: {uri}')
 
 try:
     cluster = MongoClient(uri)
